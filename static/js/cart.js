@@ -15,9 +15,7 @@ for(var i=0;i< updatebtns.length  ;i++){
         }
     })
 }
-function addCookieItem(productId , action){
-    // console.log('Logged in failed...') 
-    
+function addCookieItem(productId , action){  
     console.log("hello")
     if(action == 'add'){
         if(cart[productId]==undefined){
@@ -34,7 +32,7 @@ function addCookieItem(productId , action){
         }
     }
     console.log("Cart  :", cart)
-    document.cookie =  'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+    document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
     location.reload()
 }
 
