@@ -129,13 +129,13 @@
 
 			}
 			var url = '/process_order/'
-		fetch(url , {
-        	method:'POST', 
-        	headers:{
-            	'Content-Type':'application/json',
-            	'X-CSRFToken':csrftoken,
-        },
-        body:JSON.stringify({'form':userFormData , 'shipping':shippingInfo})
+			fetch(url , {
+        		method:'POST', 
+        		headers:{
+            		'Content-Type':'application/json',
+            		'X-CSRFToken':csrftoken,
+        		},
+        		body:JSON.stringify({'form':userFormData , 'shipping':shippingInfo})
     })
 
 			.then((response) => response.json())

@@ -4,9 +4,9 @@ from .models import *
 from . utils import *
 import datetime
 import json
-# from .models import Item 
-
+import os 
 def processOrder(request):
+    # counter = counter +1
     print('Data : ', request.body) 
     if request.method == 'POST':
         # Decode the bytes object to a string
@@ -26,18 +26,7 @@ def processOrder(request):
         city = shipping_data.get('city')
         state = shipping_data.get('state')
         zipcode = shipping_data.get('zipcode')
-        
-    #     items = order.objects.all()  # Querying all items, adjust the queryset as per your requirements
-    
-    # # Extracting product names and prices
-    #     product_names = [item.product.name for item in items]
-    #     product_prices = [item.product.price for item in items]
-    #     print(product_names)
-    #     context = {
-    #         'items': items,
-    #         'product_names': product_names,
-    #         'product_prices': product_prices,
-    #     }
+
     print(zipcode)
     transaction_id  = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
@@ -62,6 +51,56 @@ def processOrder(request):
                 
     
             )
+        for item in order.orderitem_set.all():
+        # Accessing product name, quantity, and price for each item
+            product_name = item.product.name
+            quantity = item.quantity
+            price = item.get_total
+            print("Product Name :", product_name)
+                    
+            
+            # define the path to the folder where you want to create the file 
+            # folder_path = '\Desktop\New Project\ecommerce\Cills' 
+            
+            # create the folder if it doesn't exist 
+            # if not os.path.exists(folder_path): 
+            #     os.makedirs(folder_path) 
+            
+            # define the file name and path 
+            # file_name = 'bill1.txt' 
+            # file_path = os.path.join('/Cills/', file_name) 
+            
+            # create the file 
+            # print('Hello world')
+            with open('bill2.txt', 'w') as f: 
+                f.write(f'Name  : {name}\n')
+                f.write(f'Email  : {email}\n')
+                f.write(f'Quantity: {quantity}\n')
+                f.write(f'Price: {price}\n')
+                f.write(f'Address  : {address}\n')
+                f.write(f'City : {city}\n')
+                f.write(f'State : {state}\n')
+                f.write(f'ZipCode : {zipcode}\n')
+                f.close()
+                        
+        # You can process these values as needed in your application
+        # f = open("bills/myfile.txt", "w")
+        # f.write('Name  : ',name)
+        # f.write('Email  : ',email)
+        # f.write("Quantity:", quantity)
+        # f.write("Price:", price)
+        # f.write("address  :", address)
+        # f.write("City :", city)
+        # f.write("State :",state)
+        # f.write("ZipCode :",zipcode)
+        # f.close()
+
+
+
+        
+        
+
+            
     else:
        customer,order = guestOrder(request,data)
 
@@ -111,6 +150,7 @@ def checkout(request):
     order = data['order']
     cartItems= data['cartItems'] 
     context = {'items' : items , 'order' : order, 'cartItems' : cartItems}
+    print(items)
     return render(request , 'store/checkout.html' , context)
 
 def updateItem(request):
