@@ -1,8 +1,8 @@
 Name  : None
 Email  : None
-Quantity: 1
-Price: 100.00
-Address  : jhanvi
-City : ahmedabad
-State : Gujarat
-ZipCode : 380058
+Quantity: 2
+Price: 6.00
+Address  : axzd
+City : Ahmedabad
+State : sdvsdvsdvs
+ZipCode : 12345
